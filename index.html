@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 커리어 헥사곤 토크</title>
+    <style>
+        /* --- 기본 스타일 설정 --- */
+        :root {
+            --bg-color: #121225; /* 어두운 우주 배경색 */
+            --text-color: #ffffff;
+            --accent-color: #00f2fe; /* 밝은 청록색 포인트 */
+            --hex-bg: rgba(255, 255, 255, 0.1);
+            --modal-bg: #1e1e30;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        h1 {
+            margin-top: 40px;
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+        p.subtitle {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        /* --- 헥사곤 그리드 컨테이너 --- */
+        .hex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 1000px;
+            justify-content: center;
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        /* --- 개별 헥사곤 카드 스타일 --- */
+        .hex-card {
+            position: relative;
+            width: 220px;
+            height: 250px;
+            background-color: var(--hex-bg);
+            /* CSS로 육각형 만들기 (clip-path 이용) */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* 각 카드의 고유 색상 및 아이콘 */
+        .hex-card[data-id="1"] { box-shadow: inset 0 0 30px rgba(255, 99, 132, 0.3); }
+        .hex-card[data-id="2"] { box-shadow: inset 0 0 30px rgba(54, 162, 235, 0.3); }
+        .hex-card[data-id="3"] { box-shadow: inset 0 0 30px rgba(255, 206, 86, 0.3); }
+        .hex-card[data-id="4"] { box-shadow: inset 0 0 30px rgba(75, 192, 192, 0.3); }
+        .hex-card[data-id="5"] { box-shadow: inset 0 0 30px rgba(153, 102, 255, 0.3); }
+        .hex-card[data-id="6"] { box-shadow: inset 0 0 30px rgba(255, 159, 64, 0.3); }
+
+        .hex-card:hover {
+            transform: scale(1.1) translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.7);
+            z-index: 10;
+        }
+
+        .hex-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+        .hex-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            word-break: keep-all;
+        }
+
+        /* --- 모달(팝업창) 스타일 --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none; /* 기본적으로 숨김 */
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .modal-content {
+            background: var(--modal-bg);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+        .close-btn:hover { color: var(--accent-color); }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+        .modal-icon { font-size: 3rem; margin-right: 15px; }
+        .modal-title { font-size: 1.8rem; margin: 0; color: var(--accent-color); }
+        
+        .info-section { margin-bottom: 20px; }
+        .info-label { 
+            font-weight: bold; 
+            color: var(--accent-color); 
+            margin-bottom: 8px; 
+            display: block;
+            font-size: 1.1rem;
+        }
+        .info-text { 
+            line-height: 1.6; 
+            color: #e0e0e0;
+        }
+        .tag-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 애니메이션 정의 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AI 커리어 헥사곤 (Hexagon)</h1>
+    <p class="subtitle">가장 관심 있는 AI 분야의 카드를 선택하여 미래를 탐색해보세요.</p>
+
+    <div class="hex-grid">
+        <div class="hex-card" data-id="1">
+            <div class="hex-icon">🎨</div>
+            <div class="hex-title">생성형 AI<br>(Gen-AI)</div>
+        </div>
+        <div class="hex-card" data-id="2">
+            <div class="hex-icon">🚗</div>
+            <div class="hex-title">자율주행 &<br>로보틱스</div>
+        </div>
+        <div class="hex-card" data-id="3">
+            <div class="hex-icon">🏥</div>
+            <div class="hex-title">의료 AI<br>(헬스케어)</div>
+        </div>
+        <div class="hex-card" data-id="4">
+            <div class="hex-icon">💰</div>
+            <div class="hex-title">핀테크 &<br>데이터 분석</div>
+        </div>
+        <div class="hex-card" data-id="5">
+            <div class="hex-icon">🎮</div>
+            <div class="hex-title">게임 AI &<br>메타버스</div>
+        </div>
+        <div class="hex-card" data-id="6">
+            <div class="hex-icon">⚖️</div>
+            <div class="hex-title">AI 윤리 &<br>정책</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon" id="m-icon"></div>
+                <h2 class="modal-title" id="m-title"></h2>
+            </div>
+            <div class="modal-body">
+                <div class="info-section">
+                    <span class="info-label">💡 어떤 분야인가요?</span>
+                    <p class="info-text" id="m-desc"></p>
+                </div>
+                <div class="info-section">
+                    <span class="info-label">🎓 관련 대학 전공</span>
+                    <div class="tag-box" id="m-majors"></div>
+                </div>
+                 <div class="info-section">
+                    <span class="info-label">💼 대표 직무 (커리어)</span>
+                    <div class="tag-box" id="m-jobs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 데이터 정의 (콘텐츠 수정 시 이 부분을 변경하세요) ---
+        const keywordData = {
+            1: {
+                icon: "🎨",
+                title: "생성형 AI (Generative AI)",
+                desc: "텍스트, 이미지, 오디오, 비디오 등 새로운 콘텐츠를 스스로 만들어내는 AI입니다. ChatGPT나 Midjourney처럼 인간의 창의 영역을 보조하거나 대체하는 강력한 도구입니다.",
+                majors: ["컴퓨터공학", "인공지능학과", "데이터사이언스", "언어학(NLP)"],
+                jobs: ["AI 모델 연구원", "프롬프트 엔지니어", "AI 서비스 기획자", "MLOps 엔지니어"]
+            },
+            2: {
+                icon: "🚗",
+                title: "자율주행 & 로보틱스",
+                desc: "자동차가 스스로 주변 환경을 인식하여 운전하거나, 로봇이 복잡한 환경에서 작업을 수행하도록 돕습니다. 컴퓨터 비전(시각)과 센서 데이터 처리 기술이 핵심입니다.",
+                majors: ["기계공학", "전자전기공학", "로봇공학", "컴퓨터비전 전공"],
+                jobs: ["자율주행 알고리즘 개발자", "로봇 제어 엔지니어", "컴퓨터 비전 연구원", "임베디드 SW 개발자"]
+            },
+            3: {
+                icon: "🏥",
+                title: "의료 AI (헬스케어)",
+                desc: "X-ray/MRI 영상을 분석해 질병을 조기에 진단하거나, 신약 개발 과정을 획기적으로 단축시키는 데 사용됩니다. 사람의 생명과 직결된 매우 중요한 분야입니다.",
+                majors: ["의생명공학", "바이오시스템", "컴퓨터공학", "약학/의학 기초"],
+                jobs: ["의료 영상 분석가", "바이오 데이터 사이언티스트", "AI 신약 개발 연구원", "디지털 헬스케어 기획자"]
+            },
+            4: {
+                icon: "💰",
+                title: "핀테크 & 데이터 분석",
+                desc: "금융(Finance)과 기술(Technology)의 결합입니다. 주가 예측, 신용도 평가, 이상 금융 거래 탐지(사기 방지) 등 방대한 숫자를 다루는 데 AI가 활용됩니다.",
+                majors: ["통계학", "수학", "경제/경영학", "산업공학"],
+                jobs: ["금융공학가(Quant)", "데이터 애널리스트", "리스크 관리 AI 전문가", "고객 추천 시스템 개발자"]
+            },
+            5: {
+                icon: "🎮",
+                title: "게임 AI & 메타버스",
+                desc: "게임 속 NPC가 사람처럼 똑똑하게 행동하게 만들거나, 현실 같은 가상 공간(메타버스)을 구축합니다. 사용자의 몰입감을 극대화하는 엔터테인먼트 기술입니다.",
+                majors: ["게임공학/멀티미디어", "컴퓨터그래픽스(CG)", "문화콘텐츠학", "소프트웨어학"],
+                jobs: ["게임 AI 프로그래머", "메타버스 플랫폼 개발자", "테크니컬 아티스트(TA)", "가상현실(VR/AR) 전문가"]
+            },
+            6: {
+                icon: "⚖️",
+                title: "AI 윤리 & 정책",
+                desc: "AI가 차별적인 결과를 내지 않도록 감시하고, 딥페이크 같은 기술 오남용을 막기 위한 법과 제도를 만듭니다. 기술과 인문 사회학적 소양이 모두 필요합니다.",
+                majors: ["철학/윤리학", "법학", "사회학", "과학기술정책대학원"],
+                jobs: ["AI 윤리 정책 연구원", "기술 영향 평가 전문가", "AI 신뢰성 검증가", "IT 전문 변호사"]
+            }
+        };
+
+        // --- 기능 구현 스크립트 ---
+        const cards = document.querySelectorAll('.hex-card');
+        const modal = document.getElementById('modal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // 모달 내용 엘리먼트 선택
+        const mIcon = document.getElementById('m-icon');
+        const mTitle = document.getElementById('m-title');
+        const mDesc = document.getElementById('m-desc');
+        const mMajors = document.getElementById('m-majors');
+        const mJobs = document.getElementById('m-jobs');
+
+        // 카드 클릭 이벤트 리스너 추가
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-id');
+                const data = keywordData[id];
+
+                // 모달 내용 채우기
+                mIcon.textContent = data.icon;
+                mTitle.textContent = data.title;
+                mDesc.textContent = data.desc;
+                
+                // 태그(전공, 직무) 초기화 후 다시 채우기
+                mMajors.innerHTML = '';
+                data.majors.forEach(major => {
+                    mMajors.innerHTML += `<span class="tag">${major}</span>`;
+                });
+                
+                mJobs.innerHTML = '';
+                data.jobs.forEach(job => {
+                    mJobs.innerHTML += `<span class="tag">${job}</span>`;
+                });
+
+                // 모달 보여주기
+                modal.classList.add('active');
+            });
+        });
+
+        // 모달 닫기 기능
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // 배경 클릭 시 모달 닫기
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
