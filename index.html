@@ -228,7 +228,7 @@
 
     <header>
         <h1>AI Career Hexagon</h1>
-        <p class="sub-text">미래의 나는 어떤 개발자가 되어 있을까?<br>카드를 선택하여 '현실(Reality)'을 확인해보세요.</p>
+        <p class="sub-text">미래의 나는 어떤 기술자가 되어 있을까?<br>카드를 선택하여 '현실(Reality)'을 확인해보세요.</p>
     </header>
 
     <div class="hex-container" id="gridContainer">
@@ -267,74 +267,74 @@
 
     <script>
         // --- 멘토링용 상세 데이터 ---
-        const careerData = [
-            {
-                id: 1,
-                icon: "🎨",
-                title: "Generative AI",
-                subtitle: "창조하는 인공지능 (LLM, Diffusion)",
-                reality: "영화 <HER>의 OS를 만드는 일입니다. 하지만 낭만적이지 않아요. <br>수억 개의 <strong>데이터를 정제(Cleaning)</strong>하고, AI가 헛소리(Hallucination)를 하지 않도록 끊임없이 <strong>파라미터를 튜닝</strong>하는 인내심이 필요합니다.",
-                major: "컴퓨터공학, 인공지능학과, 언어학(NLP)",
-                jobs: "AI 모델러, 프롬프트 엔지니어, MLOps 엔지니어",
-                tip: "언어 능력이 중요해요! 영어 독해력과 논리적 글쓰기를 연습하세요.",
-                skills: ["Python", "PyTorch", "Transformer", "Math"]
-            },
-            {
-                id: 2,
-                icon: "🚗",
-                title: "Autonomous Driving",
-                subtitle: "자율주행 & 로보틱스",
-                reality: "여러분이 짠 코드가 1톤짜리 자동차를 움직입니다. <br>실수는 곧 사고로 이어지죠. 0.01초의 <strong>지연(Latency)</strong>도 잡아야 하고, 비 오는 날 센서가 오작동하는 <strong>예외 상황(Edge Case)</strong>을 해결해야 합니다.",
-                major: "기계공학, 전자공학, 컴퓨터비전",
-                jobs: "자율주행 알고리즘 개발자, 임베디드 엔지니어, SLAM 연구원",
-                tip: "물리 엔진이나 아두이노 RC카 프로젝트를 경험해보세요.",
-                skills: ["C++", "Linux", "Sensor Fusion", "ROS"]
-            },
-            {
-                id: 3,
-                icon: "🏥",
-                title: "Healthcare AI",
-                subtitle: "디지털 헬스케어 & 의료 AI",
-                reality: "의사를 대체하는 게 아니라, 의사의 '세 번째 눈'을 만드는 일입니다. <br>흐릿한 X-ray 사진에서 <strong>패턴을 찾는 알고리즘</strong>을 짭니다. 의료 데이터는 구하기 힘들고 보안이 매우 엄격해서, <strong>데이터 윤리</strong>가 가장 중요한 분야입니다.",
-                major: "의공학, 생명정보학, 통계학",
-                jobs: "의료 영상 분석가, 신약 개발 AI 연구원, 바이오 데이터 사이언티스트",
-                tip: "생명과학 교과 지식과 통계(확률) 공부를 병행하세요.",
-                skills: ["Image Processing", "Deep Learning", "Bioinformatics"]
-            },
-            {
-                id: 4,
-                icon: "📊",
-                title: "Data Intelligence",
-                subtitle: "핀테크 & 데이터 분석",
-                reality: "숫자 뒤에 숨은 욕망을 읽는 일입니다. <br>주식 시장의 등락이나 유튜브 추천 알고리즘을 만듭니다. 화려해 보이지만, 실제로는 지저분한 엑셀 데이터를 정리하고 <strong>시각화(대시보드 만들기)</strong>하는 데 업무의 70%를 씁니다.",
-                major: "산업공학, 통계학, 경제/경영학",
-                jobs: "데이터 사이언티스트, 퀀트(Quant), 그로스 해커",
-                tip: "엑셀(Excel) 고급 기능부터 익히고, 파이썬 판다스(Pandas)를 공부해보세요.",
-                skills: ["SQL", "Python", "Tableau", "Statistics"]
-            },
-            {
-                id: 5,
-                icon: "🎮",
-                title: "Game & Metaverse",
-                subtitle: "게임 AI & 가상현실",
-                reality: "유저가 게임을 질리지 않게 만드는 '보이지 않는 손'입니다. <br>NPC가 너무 멍청해도, 너무 똑똑해도 안 됩니다. <strong>물리학</strong>과 <strong>그래픽스</strong> 지식이 필수이며, 수학(기하학, 벡터)을 모르면 캐릭터를 걷게 할 수도 없습니다.",
-                major: "게임공학, 멀티미디어, 소프트웨어학",
-                jobs: "게임 클라이언트/서버 개발자, 테크니컬 아티스트(TA), VR 개발자",
-                tip: "유니티(Unity)나 언리얼 엔진으로 간단한 게임을 만들어보세요.",
-                skills: ["C# / C++", "Unity/Unreal", "Linear Algebra", "Graphics"]
-            },
-            {
-                id: 6,
-                icon: "🛡️",
-                title: "AI Security & Ethics",
-                subtitle: "보안, 윤리, 정책",
-                reality: "창이 날카로워질수록 방패도 단단해야 합니다. <br>딥페이크 범죄를 막는 탐지 기술을 만들거나, AI가 해킹당하지 않도록 방어합니다. 기술뿐만 아니라 <strong>법과 사회 문제</strong>에 깊은 관심이 있어야 합니다.",
-                major: "정보보호학, 법학, 컴퓨터공학",
-                jobs: "화이트 해커, AI 윤리 검증가, 보안 컨설턴트",
-                tip: "사회 문제(뉴스)에 관심을 갖고, 윤리적 딜레마에 대해 토론해보세요.",
-                skills: ["Network Security", "Cryptography", "Forensics", "Law"]
-            }
-        ];
+const careerData = [
+    {
+        id: 1,
+        icon: "💻",
+        title: "컴퓨터공학\n(Computer Science)",
+        subtitle: "논리로 가상 세계를 건축하다",
+        reality: "타자를 치는 시간보다 <strong>멍하니 모니터를 보며 생각하는 시간</strong>이 더 깁니다. <br>버그 하나를 잡기 위해 3일 밤을 새우기도 하지만, 내가 짠 코드가 전 세계에서 실행될 때의 쾌감은 최고입니다.",
+        major: "컴퓨터공학, 소프트웨어학과, 정보보호학",
+        jobs: "웹/앱 개발자, AI 연구원, 보안 전문가, 데이터 엔지니어",
+        tip: "코딩 학원보다 수학(논리) 공부가 먼저! 불편한 점을 앱으로 해결해 보려는 시도를 해보세요.",
+        skills: ["C/Java/Python", "Algorithm", "Network", "Database"]
+    },
+    {
+        id: 2,
+        icon: "⚡",
+        title: "전자공학\n(Electronic Eng)",
+        subtitle: "전기의 마법사, 하드웨어를 지배하다",
+        reality: "눈에 보이지 않는 전자(Electron)의 흐름을 제어합니다. <br>납땜 연기를 마시며 회로기판과 씨름하고, <strong>신호 파형(Waveform)</strong>을 분석합니다. 스마트폰부터 전기차까지 안 들어가는 곳이 없는 '취업 깡패'입니다.",
+        major: "전자전기공학, 제어계측공학",
+        jobs: "회로 설계 엔지니어, 통신 연구원, 임베디드 개발자, 변리사",
+        tip: "물리의 '전자기학' 파트가 핵심입니다. 아두이노 키트로 LED 불 하나라도 직접 켜보세요.",
+        skills: ["Circuit Design", "Signal Processing", "C Language", "Matlab"]
+    },
+    {
+        id: 3,
+        icon: "⚙️",
+        title: "기계공학\n(Mechanical Eng)",
+        subtitle: "움직이는 모든 것을 설계하다",
+        reality: "기름만 만지는 게 아닙니다. <br>힘, 열, 유체의 움직임을 <strong>수학적으로 계산</strong>하여 비행기, 로켓, 로봇을 설계합니다. 역학(Mechanics) 때문에 공부 양이 어마어마하게 많습니다.",
+        major: "기계공학, 항공우주공학, 로봇공학",
+        jobs: "기구 설계, 플랜트 엔지니어, 로봇 연구원, 자동차 R&D",
+        tip: "물리의 '역학(힘과 운동)'을 마스터하세요. 3D 모델링(CAD) 툴을 체험해보면 좋습니다.",
+        skills: ["CAD/CATIA", "Dynamics", "Thermodynamics", "Materials"]
+    },
+    {
+        id: 4,
+        icon: "💾",
+        title: "반도체공학\n(Semiconductor)",
+        subtitle: "나노 미터의 예술, 산업의 쌀",
+        reality: "먼지 한 톨 없는 클린룸에서 방진복을 입고 근무합니다. <br>전자, 재료, 화학 지식이 모두 필요한 <strong>종합 예술</strong>입니다. 수율(성공률)을 1% 올리기 위해 수백 명의 엔지니어가 매달립니다.",
+        major: "반도체공학, 신소재공학, 물리학",
+        jobs: "공정 설계, 소자 개발, 패키징 엔지니어, 장비 엔지니어",
+        tip: "화학과 물리를 골고루 잘해야 합니다. 꼼꼼하고 집요한 성격에게 추천합니다.",
+        skills: ["Solid State Physics", "Process Tech", "Data Analysis", "Chemistry"]
+    },
+    {
+        id: 5,
+        icon: "🧬",
+        title: "생명공학\n(Bio & Life)",
+        subtitle: "신의 영역에 도전하다",
+        reality: "실험 결과가 나올 때까지 하염없이 기다리는 <strong>인내의 학문</strong>입니다. <br>눈에 보이지 않는 세포, DNA와 싸웁니다. 의대와는 다릅니다. 환자를 보는 게 아니라 기술로 질병을 정복합니다.",
+        major: "생명공학, 바이오시스템, 의공학",
+        jobs: "제약 연구원, 바이오 시밀러 생산관리, 유전체 분석가",
+        tip: "생명과학뿐만 아니라 데이터를 분석하는 통계학 지식도 점점 중요해지고 있습니다.",
+        skills: ["Biology", "Organic Chem", "Data Science", "PCR/Cell Culture"]
+    },
+    {
+        id: 6,
+        icon: "🧪",
+        title: "화학공학\n(Chemical Eng)",
+        subtitle: "실험실의 마법을 공장으로",
+        reality: "비커 들고 실험하는 건 '화학과'입니다. 화학공학은 그 반응을 <strong>거대한 공장(Plant)</strong>에서 구현하는 '공정'을 설계합니다. 파이프, 탱크, 열 교환기를 다루며 규모가 매우 큽니다.",
+        major: "화학공학, 에너지공학, 고분자공학",
+        jobs: "정유/석유화학 엔지니어, 2차전지(배터리) 개발, 화장품 연구원",
+        tip: "화학은 기본이고, 열과 압력을 계산하기 위해 수학과 물리도 매우 많이 쓰입니다.",
+        skills: ["Thermodynamics", "Process Control", "Mass Transfer", "Safety"]
+    }
+];
 
         // --- 기능 구현 ---
         const grid = document.getElementById('gridContainer');
