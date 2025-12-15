@@ -267,72 +267,73 @@
 
     <script>
         // --- 멘토링용 상세 데이터 ---
+// --- 자율주행 & 모빌리티 산업 특화 데이터 ---
 const careerData = [
     {
         id: 1,
-        icon: "💻",
-        title: "컴퓨터공학\n(Computer Science)",
-        subtitle: "논리로 가상 세계를 건축하다",
-        reality: "타자를 치는 시간보다 <strong>멍하니 모니터를 보며 생각하는 시간</strong>이 더 깁니다. <br>버그 하나를 잡기 위해 3일 밤을 새우기도 하지만, 내가 짠 코드가 전 세계에서 실행될 때의 쾌감은 최고입니다.",
-        major: "컴퓨터공학, 소프트웨어학과, 정보보호학",
-        jobs: "웹/앱 개발자, AI 연구원, 보안 전문가, 데이터 엔지니어",
-        tip: "코딩 학원보다 수학(논리) 공부가 먼저! 불편한 점을 앱으로 해결해 보려는 시도를 해보세요.",
-        skills: ["C/Java/Python", "Algorithm", "Network", "Database"]
+        icon: "🚗",
+        title: "자율주행 엔지니어\n(Autonomous Engineer)",
+        subtitle: "AI에게 운전을 가르치는 선생님",
+        reality: "멋지게 달리는 차에 타기보단, 센서 데이터와 싸웁니다. <br>차가 그림자를 바위로 착각해서 급정거하는 이유를 찾기 위해 수천 줄의 <strong>인지/판단/제어 알고리즘</strong>을 디버깅합니다. 사람의 생명이 달린 코드라 엄청난 꼼꼼함이 필요합니다.",
+        major: "컴퓨터공학, 기계공학, 로봇공학",
+        jobs: "인지(Perception) 엔지니어, 경로 생성(Planning) 연구원, 차량 제어 개발자",
+        tip: "C++ 언어 실력이 필수입니다. 오픈소스인 'ROS(로봇 운영체제)'를 미리 다뤄보면 최고!",
+        skills: ["C++ / Python", "Deep Learning", "SLAM", "ROS"]
     },
     {
         id: 2,
-        icon: "⚡",
-        title: "전자공학\n(Electronic Eng)",
-        subtitle: "전기의 마법사, 하드웨어를 지배하다",
-        reality: "눈에 보이지 않는 전자(Electron)의 흐름을 제어합니다. <br>납땜 연기를 마시며 회로기판과 씨름하고, <strong>신호 파형(Waveform)</strong>을 분석합니다. 스마트폰부터 전기차까지 안 들어가는 곳이 없는 '취업 깡패'입니다.",
-        major: "전자전기공학, 제어계측공학",
-        jobs: "회로 설계 엔지니어, 통신 연구원, 임베디드 개발자, 변리사",
-        tip: "물리의 '전자기학' 파트가 핵심입니다. 아두이노 키트로 LED 불 하나라도 직접 켜보세요.",
-        skills: ["Circuit Design", "Signal Processing", "C Language", "Matlab"]
+        icon: "🗺️",
+        title: "모빌리티 서비스 기획자\n(Service Planner)",
+        subtitle: "기술을 넘어 이동 문화를 만들다",
+        reality: "단순히 택시 앱을 만드는 게 아닙니다. <br>'로봇 택시를 탔을 때 요금을 어떻게 받을까?', '사고가 나면 누가 책임질까?' 같은 <strong>MaaS(서비스로서의 이동) 생태계</strong>와 법적 이슈, 사용자 경험 시나리오를 설계합니다.",
+        major: "산업공학, 도시공학, 경영학",
+        jobs: "모빌리티 서비스 기획자, MaaS PM, 스마트시티 설계자",
+        tip: "사람들이 이동할 때 겪는 불편함을 관찰하고, 이를 해결할 비즈니스 모델을 구상해 보세요.",
+        skills: ["Data Analysis", "UX Research", "Business Strategy", "Communication"]
     },
     {
         id: 3,
-        icon: "⚙️",
-        title: "기계공학\n(Mechanical Eng)",
-        subtitle: "움직이는 모든 것을 설계하다",
-        reality: "기름만 만지는 게 아닙니다. <br>힘, 열, 유체의 움직임을 <strong>수학적으로 계산</strong>하여 비행기, 로켓, 로봇을 설계합니다. 역학(Mechanics) 때문에 공부 양이 어마어마하게 많습니다.",
-        major: "기계공학, 항공우주공학, 로봇공학",
-        jobs: "기구 설계, 플랜트 엔지니어, 로봇 연구원, 자동차 R&D",
-        tip: "물리의 '역학(힘과 운동)'을 마스터하세요. 3D 모델링(CAD) 툴을 체험해보면 좋습니다.",
-        skills: ["CAD/CATIA", "Dynamics", "Thermodynamics", "Materials"]
+        icon: "📊",
+        title: "자율주행 데이터 분석가\n(Data Analyst)",
+        subtitle: "도로 위의 로그를 가치로 바꾸다",
+        reality: "하루에도 테라바이트(TB) 급으로 쌓이는 주행 데이터를 정제합니다. <br>AI가 학습할 수 있도록 데이터를 분류하고, 사고가 날 뻔한 <strong>특이 케이스(Edge Case)</strong>를 찾아내어 모델의 성능을 개선하는 핵심 역할을 합니다.",
+        major: "통계학, 수학, 데이터사이언스",
+        jobs: "모빌리티 데이터 분석가, AI 데이터 전략가, 교통 흐름 예측 연구원",
+        tip: "파이썬(Pandas)과 시각화 도구(Tableau)를 다룰 줄 알면 매우 유리합니다.",
+        skills: ["Python", "SQL", "Statistics", "Data Visualization"]
     },
     {
         id: 4,
-        icon: "💾",
-        title: "반도체공학\n(Semiconductor)",
-        subtitle: "나노 미터의 예술, 산업의 쌀",
-        reality: "먼지 한 톨 없는 클린룸에서 방진복을 입고 근무합니다. <br>전자, 재료, 화학 지식이 모두 필요한 <strong>종합 예술</strong>입니다. 수율(성공률)을 1% 올리기 위해 수백 명의 엔지니어가 매달립니다.",
-        major: "반도체공학, 신소재공학, 물리학",
-        jobs: "공정 설계, 소자 개발, 패키징 엔지니어, 장비 엔지니어",
-        tip: "화학과 물리를 골고루 잘해야 합니다. 꼼꼼하고 집요한 성격에게 추천합니다.",
-        skills: ["Solid State Physics", "Process Tech", "Data Analysis", "Chemistry"]
+        icon: "🎨",
+        title: "HMI / UI 디자이너\n(Human-Machine Interface)",
+        subtitle: "인간과 자동차의 대화를 디자인하다",
+        reality: "예쁜 화면을 그리는 게 전부가 아닙니다. <br>운전대가 없는 차 안에서 승객이 불안해하지 않도록, 차가 '지금 차선 변경 중이에요'라고 <strong>시각/청각적으로 소통하는 방법</strong>을 설계합니다. 인지 심리학 지식이 매우 중요합니다.",
+        major: "시각디자인, 인지심리학, 인간공학",
+        jobs: "HMI(차량용 인터페이스) 디자이너, UX/UI 디자이너, 3D 인터랙션 디자이너",
+        tip: "유니티(Unity) 3D 엔진을 배워서 가상 공간의 인터페이스를 직접 만들어보세요.",
+        skills: ["Figma", "Unity 3D", "User Psychology", "3D Modeling"]
     },
     {
         id: 5,
-        icon: "🧬",
-        title: "생명공학\n(Bio & Life)",
-        subtitle: "신의 영역에 도전하다",
-        reality: "실험 결과가 나올 때까지 하염없이 기다리는 <strong>인내의 학문</strong>입니다. <br>눈에 보이지 않는 세포, DNA와 싸웁니다. 의대와는 다릅니다. 환자를 보는 게 아니라 기술로 질병을 정복합니다.",
-        major: "생명공학, 바이오시스템, 의공학",
-        jobs: "제약 연구원, 바이오 시밀러 생산관리, 유전체 분석가",
-        tip: "생명과학뿐만 아니라 데이터를 분석하는 통계학 지식도 점점 중요해지고 있습니다.",
-        skills: ["Biology", "Organic Chem", "Data Science", "PCR/Cell Culture"]
+        icon: "🎮",
+        title: "시뮬레이션 엔지니어\n(Simulation Eng)",
+        subtitle: "가상 세계에 똑같은 지구를 건설하다",
+        reality: "자율주행차를 매번 실제 도로에서 충돌시킬 순 없죠. <br>게임 엔진을 활용해 비가 오거나 아이가 갑자기 튀어나오는 상황을 <strong>가상 현실(Digital Twin)</strong>로 똑같이 구현하여 AI를 혹독하게 테스트합니다.",
+        major: "컴퓨터그래픽스, 게임공학, 물리학",
+        jobs: "자율주행 시뮬레이터 개발자, 가상 환경 엔지니어, 게임 엔진 전문가",
+        tip: "게임을 좋아하는 친구들에게 강추! 언리얼 엔진이나 물리 엔진 공부가 큰 도움이 됩니다.",
+        skills: ["Unreal/Unity Engine", "Computer Graphics", "Physics Engine", "C++"]
     },
     {
         id: 6,
-        icon: "🧪",
-        title: "화학공학\n(Chemical Eng)",
-        subtitle: "실험실의 마법을 공장으로",
-        reality: "비커 들고 실험하는 건 '화학과'입니다. 화학공학은 그 반응을 <strong>거대한 공장(Plant)</strong>에서 구현하는 '공정'을 설계합니다. 파이프, 탱크, 열 교환기를 다루며 규모가 매우 큽니다.",
-        major: "화학공학, 에너지공학, 고분자공학",
-        jobs: "정유/석유화학 엔지니어, 2차전지(배터리) 개발, 화장품 연구원",
-        tip: "화학은 기본이고, 열과 압력을 계산하기 위해 수학과 물리도 매우 많이 쓰입니다.",
-        skills: ["Thermodynamics", "Process Control", "Mass Transfer", "Safety"]
+        icon: "🔌",
+        title: "임베디드 시스템 엔지니어\n(Embedded System)",
+        subtitle: "거대한 AI를 작은 칩에 담다",
+        reality: "아무리 똑똑한 AI도 자동차 내의 작은 컴퓨터에서 돌아가지 않으면 무용지물입니다. <br>제한된 전력과 성능 안에서 AI가 <strong>실시간(Real-time)</strong>으로 빠르게 판단할 수 있도록 하드웨어와 소프트웨어를 최적화합니다.",
+        major: "전자공학, 전기공학, 컴퓨터공학",
+        jobs: "차량용 반도체 설계, 임베디드 SW 개발자, 전장 부품 엔지니어",
+        tip: "아두이노나 라즈베리 파이로 센서 데이터를 받아 모터를 돌리는 프로젝트를 꼭 해보세요.",
+        skills: ["C Language", "Linux / RTOS", "Computer Architecture", "Circuit"]
     }
 ];
 
